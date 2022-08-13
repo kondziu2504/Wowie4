@@ -25,7 +25,7 @@ namespace Wowie4
 
         private void Shoot(Action.Type actionType)
         {
-            var matchingBullet = runtimeGameData.Bullets.FirstOrDefault(bullet => bullet.ActionType == actionType);
+            var matchingBullet = runtimeGameData.Bullets.OrderBy(x => DistanceTo(x.transform.position)).FirstOrDefault();
             if(matchingBullet != null)
             {
                 var laserColor = Action.GetActionColor(actionType);
@@ -35,6 +35,8 @@ namespace Wowie4
                 matchingBullet.Destroy();
             }
         }
+
+        private float DistanceTo(Vector3 target) => (transform.position - target).magnitude;
     }
 }
 

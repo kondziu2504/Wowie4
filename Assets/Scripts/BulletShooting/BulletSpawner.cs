@@ -55,7 +55,7 @@ namespace Wowie4
 
         private void SpawnBullet()
         {
-            var bullet = Instantiate(bulletPrefab, GetRandomSpawnPos(), Quaternion.identity, transform);
+            var bullet = Instantiate(bulletPrefab, GetRandomSpawnPos(), Quaternion.identity);
             bullet.Init(GetRandomActionType(), Vector2.down * bulletSpeed);
         }
 
