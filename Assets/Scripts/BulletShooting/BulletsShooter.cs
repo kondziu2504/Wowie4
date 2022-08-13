@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+using UnityEngine.Assertions;
+
+namespace Wowie4
+{
+    public class BulletsShooter : MonoBehaviour
+    {
+        [SerializeField] RuntimeGameData runtimeGameData;
+        [SerializeField] ActionChosenEvent actionChosenEvent;
+
+        [SerializeField] Transform eye1;
+        [SerializeField] Transform eye2;
+
+        [SerializeField] Laser laser1;
+        [SerializeField] Laser laser2;
+
+        private void Awake()
+        {
+            Assert.IsNotNull(runtimeGameData);
+            actionChosenEvent.OnEventRaised += Shoot;
+        }
+
+        private void Shoot(Action.Type actionType)
+        {
+            var matchingBullet = runtimeGameData.Bullets.FirstOrDefault(bullet => bullet.ActionType == actionType);
+            if(matchingBullet != null)
+            {
+                var laserColor = Action.GetActionColor(actionType);
+                laser1.Shoot(eye1.position, matchingBullet.transform.position, laserColor);
+                laser2.Shoot(eye2.position, matchingBullet.transform.position, laserColor);
+
+                matchingBullet.Destroy();
+            }
+        }
+    }
+}
+
