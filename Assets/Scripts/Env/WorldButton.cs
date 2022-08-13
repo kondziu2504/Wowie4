@@ -22,7 +22,7 @@ namespace Wowie4
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			ButtonPressed?.Invoke(Action.Type.Blue);
+			ButtonPressed?.Invoke(actionType);
 
 			spriteRenderer.sprite = pressedSprite;
 		}
