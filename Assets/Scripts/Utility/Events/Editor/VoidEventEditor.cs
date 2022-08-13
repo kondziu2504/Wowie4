@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using Utility.Events;
 
-namespace Utility.Editor
+namespace Utility.Events.Editor
 {
     [CustomEditor(typeof(VoidEvent), true)]
     public class VoidEventEditor : UnityEditor.Editor

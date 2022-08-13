@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Utility.Editor
+namespace Utility.Events.Editor
 {
     public static class Utility
     {

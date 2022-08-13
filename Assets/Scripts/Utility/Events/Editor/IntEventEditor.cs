@@ -6,42 +6,11 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using Utility.Events;
 
-namespace Utility.Editor
+namespace Utility.Events.Editor
 {
-    [CustomEditor(typeof(IntEvent))]
-    public class IntEventEditor : UnityEditor.Editor
+    [CustomEditor(typeof(IntEvent), true)]
+    public class IntEventEditor : SimpleEventEditor<IntEvent, int>
     {
-        IntEvent evnt => (IntEvent)target;
-
-        public override VisualElement CreateInspectorGUI()
-        {
-            VisualElement container = new();
-
-            InspectorElement.FillDefaultInspector(container, serializedObject, this);
-
-            var debugLabel = new Label("Debug");
-            debugLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
-
-            container.Add(debugLabel);
-            container.Add(CreateRaiseEventElement());
-
-            return container;
-        }
-
-        private VisualElement CreateRaiseEventElement()
-        {
-            VisualElement raiseEventContainer = new();
-            raiseEventContainer.style.flexDirection = FlexDirection.Row;
-
-            var argField = new IntegerField("Argument");
-            argField.style.flexGrow = new StyleFloat(1f);
-
-            var raiseEventBtn = Utility.CreateRaiseEventBtn(() => evnt.RaiseEvent(argField.value));
-
-            raiseEventContainer.Add(argField);
-            raiseEventContainer.Add(raiseEventBtn);
-
-            return raiseEventContainer;
-        }
+        protected override BaseField<int> CreateField() => new IntegerField("Argument");
     }
 }
