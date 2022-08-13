@@ -21,6 +21,8 @@ namespace Wowie4
             Assert.IsNotNull(spriteRenderer);
             Assert.IsNotNull(runtimeGameData);
 
+            Assert.IsTrue(GetComponentInChildren<Collider2D>() != null);
+
             runtimeGameData.Bullets.Add(this);
         }
 

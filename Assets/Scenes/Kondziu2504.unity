@@ -270,15 +270,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4328158714913134822, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4328158714913134822, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4328158714913134822, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4328158714913134822, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -294,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4328158714913136408, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
       propertyPath: m_Name
-      value: BulletShooter
+      value: ShootingRobot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
@@ -309,17 +309,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 8518809838429378974, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
+      propertyPath: bulletSpeed
+      value: 2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518809838429378974, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
+      propertyPath: spawnPeriod
+      value: 1.97
+      objectReference: {fileID: 0}
     - target: {fileID: 8518809838429378975, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8518809838429378975, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.66
+      value: 5.49
       objectReference: {fileID: 0}
     - target: {fileID: 8518809838429378975, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.26
+      value: 5.33
       objectReference: {fileID: 0}
     - target: {fileID: 8518809838429378975, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
       propertyPath: m_LocalPosition.z
