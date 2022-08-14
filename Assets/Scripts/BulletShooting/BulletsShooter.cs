@@ -25,10 +25,13 @@ namespace Wowie4
 
         private void Shoot(Action.Type actionType)
         {
+            if (actionType != Action.Type.Shoot)
+                return;
+
             var matchingBullet = runtimeGameData.Bullets.OrderBy(x => DistanceTo(x.transform.position)).FirstOrDefault();
             if(matchingBullet != null)
             {
-                var laserColor = Action.GetActionColor(actionType);
+                var laserColor = Color.red; //Action.GetActionColor(actionType);
                 laser1.Shoot(eye1.position, matchingBullet.transform.position, laserColor);
                 laser2.Shoot(eye2.position, matchingBullet.transform.position, laserColor);
 

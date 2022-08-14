@@ -17,7 +17,6 @@ namespace Wowie4
         {
             Assert.IsNotNull(lineRenderer);
             originalWidth = lineRenderer.startWidth;
-            gameObject.SetActive(false);
         }
 
         public void Shoot(Vector2 startPoint, Vector2 endPoint, Color color)

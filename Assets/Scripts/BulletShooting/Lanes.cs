@@ -13,7 +13,7 @@ namespace Wowie4
 
         [SerializeField] ShootingRobot robot;
 
-        [SerializeField] IntEvent laneChangedEvent;
+        [SerializeField] ActionChosenEvent actionChosenEvent;
         [SerializeField] float lanesDistance = 1f;
 
         public int CurrentLane { get; private set; } = 0;
@@ -21,19 +21,19 @@ namespace Wowie4
         private void Awake()
         {
             Assert.IsNotNull(robot);
-            Assert.IsNotNull(laneChangedEvent);
+            Assert.IsNotNull(actionChosenEvent);
 
-            laneChangedEvent.OnEventRaised += OnLaneChanged;
+            actionChosenEvent.OnEventRaised += OnLaneChanged;
         }
 
         private void Start()
         {
-            OnLaneChanged(1);
+            OnLaneChanged(Action.Type.Left);
         }
 
         private void OnDestroy()
         {
-            laneChangedEvent.OnEventRaised -= OnLaneChanged;
+            actionChosenEvent.OnEventRaised -= OnLaneChanged;
         }
 
         private void OnDrawGizmos()
@@ -55,15 +55,17 @@ namespace Wowie4
             return firstLaneX + lane * lanesDistance;
         }
 
-        private void OnLaneChanged(int lane)
+        private void OnLaneChanged(Action.Type actionType)
         {
-            if (lane < 0 || lane >= lanes)
-                return;
+            if (actionType == Action.Type.Left)
+                CurrentLane--;
+            else if (actionType == Action.Type.Right)
+                CurrentLane++;
 
-            this.CurrentLane = lane;
+            CurrentLane = Mathf.Clamp(CurrentLane, 0, MaxLanes - 1);
 
             robot.transform.position = new Vector3(
-                GetLaneX(lane),
+                GetLaneX(CurrentLane),
                 robot.transform.position.y);
         }
     }
