@@ -1260,6 +1260,7 @@ MonoBehaviour:
   maxHeight: 4.82
   descendingSpeed: 1
   ascendingSpeed: 1
+  descendBoostMultiplier: 2.78
 --- !u!50 &1227639369
 Rigidbody2D:
   serializedVersion: 4

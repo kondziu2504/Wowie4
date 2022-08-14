@@ -10,6 +10,7 @@ namespace Wowie4
         [SerializeField] float maxHeight = 2f;
         [SerializeField] float descendingSpeed = 1f;
         [SerializeField] float ascendingSpeed = 1f;
+        [SerializeField] float descendBoostMultiplier = 2f;
 
         private float originalHeight;
 
@@ -18,12 +19,28 @@ namespace Wowie4
 
         private bool descending = false;
 
+        protected Controls controls;
+
+        private new Rigidbody2D rigidbody;
+
         private void Awake()
         {
             originalHeight = transform.position.y;
+            rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        private void Update()
+        private void OnEnable()
+        {
+            controls = new Controls();
+            controls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            controls.Disable();
+        }
+
+        private void FixedUpdate()
         {
             if (!descending)
                 Ascend();
@@ -54,14 +71,17 @@ namespace Wowie4
 
         private void Descend()
         {
-            transform.position += Vector3.down * descendingSpeed * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, BottomHeight, TopHeight));
+            var change = Vector2.down * descendingSpeed * Time.deltaTime;
+            if (controls.Player.ElevatorDown.ReadValue<float>() != 0)
+                change *= descendBoostMultiplier;
+            var finalPos = new Vector2(rigidbody.position.x, Mathf.Clamp(rigidbody.position.y + change.y, BottomHeight, TopHeight));
+            rigidbody.MovePosition(finalPos);
         }
 
         private void Ascend()
         {
-            transform.position += Vector3.up * ascendingSpeed * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, BottomHeight, TopHeight));
+            var change = Vector2.up * ascendingSpeed * Time.deltaTime;
+            rigidbody.MovePosition(new Vector3(rigidbody.position.x, Mathf.Clamp(rigidbody.position.y + change.y, BottomHeight, TopHeight)));
         }
     }
 }
