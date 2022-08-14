@@ -889,10 +889,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1710826762}
     m_Modifications:
-    - target: {fileID: 1439676314762231954, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 375c6a7d9bfad9442810940d6f44411e, type: 3}
     - target: {fileID: 1439676314762231955, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -945,33 +941,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1439676314762232045, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439676314762232045, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
-      propertyPath: m_Size.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439676314762232045, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439676314762232045, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2.1333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439676314762232045, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.1333334
-      objectReference: {fileID: 0}
     - target: {fileID: 1439676314762232046, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
       propertyPath: maxSpeed
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1439676314762232046, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
       propertyPath: acceleration
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1439676314762232046, guid: c55fc7b79298fe8488bdae2ac17bdf9c, type: 3}
       propertyPath: decceleration
@@ -3211,7 +3187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1760206995918468440, guid: a6b3bc897f3a8f64fb4d67e095aba47e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.02
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 1760206995918468440, guid: a6b3bc897f3a8f64fb4d67e095aba47e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3263,7 +3239,7 @@ PrefabInstance:
       objectReference: {fileID: 2064825005}
     - target: {fileID: 1760206995918468443, guid: a6b3bc897f3a8f64fb4d67e095aba47e, type: 3}
       propertyPath: lanesDistance
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1760206995918468443, guid: a6b3bc897f3a8f64fb4d67e095aba47e, type: 3}
       propertyPath: runtimeGameData
