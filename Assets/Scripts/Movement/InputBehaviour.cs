@@ -15,6 +15,6 @@ public abstract class InputBehaviour : MonoBehaviour
 		controls.Disable();
 	}
 
-	protected abstract void SubscribeInputEvents();
-	protected abstract void UnsubscribeInputEvents();
+	protected virtual void SubscribeInputEvents() { }
+	protected virtual void UnsubscribeInputEvents() { }
 }
