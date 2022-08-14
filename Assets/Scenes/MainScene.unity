@@ -3266,6 +3266,10 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1760206995918468443, guid: a6b3bc897f3a8f64fb4d67e095aba47e, type: 3}
+      propertyPath: runtimeGameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7291b4fda1adbe248887587dc2d16e92, type: 2}
+    - target: {fileID: 1760206995918468443, guid: a6b3bc897f3a8f64fb4d67e095aba47e, type: 3}
       propertyPath: actionChosenEvent
       value: 
       objectReference: {fileID: 11400000, guid: d1f40ef62faae384ead88cd690784470, type: 2}
