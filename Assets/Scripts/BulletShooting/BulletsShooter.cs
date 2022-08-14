@@ -28,7 +28,7 @@ namespace Wowie4
             if (actionType != Action.Type.Shoot)
                 return;
 
-            var matchingBullet = runtimeGameData.Bullets.OrderBy(x => DistanceTo(x.transform.position)).FirstOrDefault();
+            var matchingBullet = runtimeGameData.Bullets.OrderBy(x => x.transform.position.y).FirstOrDefault();
             if(matchingBullet != null)
             {
                 var laserColor = Color.red; //Action.GetActionColor(actionType);
