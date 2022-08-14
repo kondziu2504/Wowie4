@@ -17,6 +17,8 @@ namespace Wowie4
         [SerializeField] Laser laser1;
         [SerializeField] Laser laser2;
 
+        [SerializeField] Lanes lanes;
+
         private void Awake()
         {
             Assert.IsNotNull(runtimeGameData);
@@ -28,7 +30,9 @@ namespace Wowie4
             if (actionType != Action.Type.Shoot)
                 return;
 
-            var matchingBullet = runtimeGameData.Bullets.OrderBy(x => x.transform.position.y).FirstOrDefault();
+            var matchingBullet = runtimeGameData.Bullets
+                .Where(x => x.Lane == lanes.CurrentLane)
+                .OrderBy(x => x.transform.position.y).FirstOrDefault();
             if(matchingBullet != null)
             {
                 var laserColor = Color.red; //Action.GetActionColor(actionType);

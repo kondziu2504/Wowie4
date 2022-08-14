@@ -917,6 +917,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4328158714913134823, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
+      propertyPath: lanes
+      value: 
+      objectReference: {fileID: 1974925345}
     - target: {fileID: 4328158714913136408, guid: 66fb19cde587bc54f9fda41fa00295b4, type: 3}
       propertyPath: m_Name
       value: ShootingRobot

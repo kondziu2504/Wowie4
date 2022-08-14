@@ -56,15 +56,15 @@ namespace Wowie4
 
         private void SpawnBullet()
         {
-            var bullet = Instantiate(bulletPrefab, GetRandomSpawnPos(), Quaternion.identity);
-            bullet.Init(GetRandomBulletType(), Vector2.down * bulletSpeed);
+            var lane = UnityEngine.Random.Range(0, lanes.MaxLanes);
+            var bullet = Instantiate(bulletPrefab, GetRandomSpawnPos(lane), Quaternion.identity);
+            bullet.Init(GetRandomBulletType(), Vector2.down * bulletSpeed, lane);
         }
 
-        private Vector3 GetRandomSpawnPos()
+        private Vector3 GetRandomSpawnPos(int lane)
         {
             var xOffset = UnityEngine.Random.Range(0, spawnLength) - spawnLength / 2f;
-            var randomLane = UnityEngine.Random.Range(0, lanes.MaxLanes);
-            return new Vector3(lanes.GetLaneX(randomLane), transform.position.y) + Vector3.right * xOffset;
+            return new Vector3(lanes.GetLaneX(lane), transform.position.y) + Vector3.right * xOffset;
         }
 
         private Bullet.Type GetRandomBulletType()

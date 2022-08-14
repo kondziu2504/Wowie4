@@ -18,6 +18,7 @@ namespace Wowie4
         public enum Type { Good, Bad, Neutral }
 
         public Type BulletType { get; private set; }
+        public int Lane { get; private set; }
 
         #region Unity messages 
 
@@ -42,10 +43,11 @@ namespace Wowie4
 
         #endregion
 
-        public void Init(Type actionType, Vector2 velocity)
+        public void Init(Type actionType, Vector2 velocity, int lane)
         {
             this.BulletType = actionType;
             rigidbody.velocity = velocity;
+            this.Lane = lane;
             spriteRenderer.color = GetColor();
         }
 
