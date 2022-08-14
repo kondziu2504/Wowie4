@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Utility.Events;
 
 namespace Wowie4
 {
@@ -10,14 +11,33 @@ namespace Wowie4
     public class ShootingRobot : MonoBehaviour
     {
         [SerializeField] BulletsShooter bulletsShooter;
-
-        [SerializeField] int health = 3;
+        [SerializeField] int maxHealth = 3;
+        int currentHealth = 3;
         [SerializeField] Diode[] diodes;
+        [SerializeField] Mouth mouth;
+        [SerializeField] VoidEvent onGoodCodeEaten;
+        [SerializeField] VoidEvent badCodePassed;
 
         private void Awake()
         {
             Assert.IsTrue(GetComponentsInChildren<Collider2D>().Length > 0);
-            Assert.IsTrue(diodes.Length == health && diodes.All(diode => diode != null));
+            Assert.IsTrue(diodes.Length == currentHealth && diodes.All(diode => diode != null));
+            Assert.IsNotNull(mouth);
+            Assert.IsNotNull(onGoodCodeEaten);
+            Assert.IsNotNull(badCodePassed);
+        }
+
+        private void Start()
+        {
+            mouth.OnGoodCodeEaten += OnGoodCodeEaten;
+            badCodePassed.OnEventRaised += DealDamage;
+        }
+
+        private void OnGoodCodeEaten()
+        {
+            currentHealth = Mathf.Min(currentHealth + 1, maxHealth);
+            diodes[currentHealth - 1].TurnOn();
+            onGoodCodeEaten.RaiseEvent();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -25,13 +45,25 @@ namespace Wowie4
             var bullet = collision.GetComponent<Bullet>();
             if(bullet != null)
             {
-                bullet.Destroy();
-
-                if(health > 0)
+                if(bullet.BulletType == Bullet.Type.Bad)
                 {
-                    diodes[diodes.Length - health].TurnOff();
-                    health--;
+                    DealDamage();
+                    bullet.Destroy();
                 }
+                else if(bullet.BulletType == Bullet.Type.Neutral)
+                {
+                    bullet.Destroy();
+                }
+             
+            }
+        }
+
+        private void DealDamage()
+        {
+            if (currentHealth > 0)
+            {
+                diodes[diodes.Length - currentHealth].TurnOff();
+                currentHealth--;
             }
         }
     }

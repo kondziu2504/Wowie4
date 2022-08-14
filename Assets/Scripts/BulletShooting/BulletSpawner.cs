@@ -20,6 +20,7 @@ namespace Wowie4
 
         [Header("Other")]
         [SerializeField] RuntimeGameData runtimeGameData;
+        [SerializeField] Lanes lanes;
 
         #region Unity messages
 
@@ -56,18 +57,19 @@ namespace Wowie4
         private void SpawnBullet()
         {
             var bullet = Instantiate(bulletPrefab, GetRandomSpawnPos(), Quaternion.identity);
-            bullet.Init(GetRandomActionType(), Vector2.down * bulletSpeed);
+            bullet.Init(GetRandomBulletType(), Vector2.down * bulletSpeed);
         }
 
         private Vector3 GetRandomSpawnPos()
         {
             var xOffset = UnityEngine.Random.Range(0, spawnLength) - spawnLength / 2f;
-            return transform.position + Vector3.right * xOffset;
+            var randomLane = UnityEngine.Random.Range(0, lanes.MaxLanes);
+            return new Vector3(lanes.GetLaneX(randomLane), transform.position.y) + Vector3.right * xOffset;
         }
 
-        private Action.Type GetRandomActionType()
+        private Bullet.Type GetRandomBulletType()
         {
-            return Enum.GetValues(typeof(Action.Type)).Cast<Action.Type>().ToList().RandomElement();
+            return Enum.GetValues(typeof(Bullet.Type)).Cast<Bullet.Type>().ToList().RandomElement();
         }
     }
 

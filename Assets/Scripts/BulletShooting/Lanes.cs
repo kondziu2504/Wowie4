@@ -9,16 +9,17 @@ namespace Wowie4
     public class Lanes : MonoBehaviour
     {
         [SerializeField, Range(1,3)] int lanes = 3;
+        public int MaxLanes => lanes;
 
-        [SerializeField] BulletSpawner spawner;
         [SerializeField] ShootingRobot robot;
 
         [SerializeField] IntEvent laneChangedEvent;
         [SerializeField] float lanesDistance = 1f;
 
+        public int CurrentLane { get; private set; } = 0;
+
         private void Awake()
         {
-            Assert.IsNotNull(spawner);
             Assert.IsNotNull(robot);
             Assert.IsNotNull(laneChangedEvent);
 
@@ -46,7 +47,9 @@ namespace Wowie4
             }
         }
 
-        private float GetLaneX(int lane)
+        public float GetCurrentLaneX() => GetLaneX(CurrentLane);
+
+        public float GetLaneX(int lane)
         {
             var firstLaneX = transform.position.x - (lanes * lanesDistance) / 2f;
             return firstLaneX + lane * lanesDistance;
@@ -57,9 +60,7 @@ namespace Wowie4
             if (lane < 0 || lane >= lanes)
                 return;
 
-            spawner.transform.position = new Vector3(
-                GetLaneX(lane),
-                spawner.transform.position.y);
+            this.CurrentLane = lane;
 
             robot.transform.position = new Vector3(
                 GetLaneX(lane),

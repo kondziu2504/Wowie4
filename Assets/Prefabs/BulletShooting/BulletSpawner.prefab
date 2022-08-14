@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965e0d753f6142e4792a66b82e6af877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLength: 6
-  spawnPeriod: 0.48
+  spawnLength: 1.56
+  spawnPeriod: 1.97
   bulletPrefab: {fileID: 6238380020484248033, guid: 7d6be5128403f8d4988332b3440353a3, type: 3}
-  bulletSpeed: 1
+  bulletSpeed: 2.9
   runtimeGameData: {fileID: 11400000, guid: 7291b4fda1adbe248887587dc2d16e92, type: 2}
