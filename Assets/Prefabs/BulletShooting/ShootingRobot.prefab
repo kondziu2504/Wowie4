@@ -915,6 +915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3216021710501429334, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4496136336864709230, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
       propertyPath: m_Name
       value: Diode (1)
@@ -987,6 +991,10 @@ PrefabInstance:
     - target: {fileID: 207558883230851692, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216021710501429334, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4496136336864709230, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
       propertyPath: m_Name
@@ -1206,6 +1214,10 @@ PrefabInstance:
     - target: {fileID: 207558883230851692, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216021710501429334, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4496136336864709230, guid: 0e2832a31d06c3d448a1ff198347bb8c, type: 3}
       propertyPath: m_Name
