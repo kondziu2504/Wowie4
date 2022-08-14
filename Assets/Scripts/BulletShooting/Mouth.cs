@@ -16,7 +16,7 @@ namespace Wowie4
 
         public System.Action OnGoodCodeEaten { get; set; }
 
-        private bool MouthIsOpen => runtimeGameData.MouthOpenAmount > 0;
+        private bool MouthIsOpen => runtimeGameData.Energy > 0;
 
         private float lowerOriginalY;
         private float upperOriginalY;
@@ -35,11 +35,11 @@ namespace Wowie4
         {
             lowerPart.transform.position = new Vector3(
                 lowerPart.transform.position.x,
-                lowerOriginalY - runtimeGameData.MouthOpenAmount * openOffset);
+                lowerOriginalY - runtimeGameData.Energy * openOffset);
 
             upperPart.transform.position = new Vector3(
                 upperPart.transform.position.x,
-                upperOriginalY + runtimeGameData.MouthOpenAmount * openOffset);
+                upperOriginalY + runtimeGameData.Energy * openOffset);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

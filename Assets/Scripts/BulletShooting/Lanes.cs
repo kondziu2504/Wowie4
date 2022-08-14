@@ -15,6 +15,7 @@ namespace Wowie4
 
         [SerializeField] ActionChosenEvent actionChosenEvent;
         [SerializeField] float lanesDistance = 1f;
+        [SerializeField] RuntimeGameData runtimeGameData;
 
         public int CurrentLane { get; private set; } = 0;
 
@@ -57,6 +58,9 @@ namespace Wowie4
 
         private void OnLaneChanged(Action.Type actionType)
         {
+            if (runtimeGameData.Energy == 0)
+                return;
+
             if (actionType == Action.Type.Left)
                 CurrentLane--;
             else if (actionType == Action.Type.Right)

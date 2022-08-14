@@ -7,7 +7,7 @@ namespace Wowie4
 {
     public class Action
     {
-        public enum Type { Left, Right, Shoot, Mouth }
+        public enum Type { Left, Right, Shoot, Mouth, Shields }
     }
 }
 

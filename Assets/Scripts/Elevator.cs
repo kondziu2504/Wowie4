@@ -11,6 +11,7 @@ namespace Wowie4
         [SerializeField] float descendingSpeed = 1f;
         [SerializeField] float ascendingSpeed = 1f;
         [SerializeField] float descendBoostMultiplier = 2f;
+        [SerializeField] RuntimeGameData runtimeGameData;
 
         private float originalHeight;
 
@@ -44,6 +45,11 @@ namespace Wowie4
         {
             if (!descending)
                 Ascend();
+        }
+
+        private void Update()
+        {
+            runtimeGameData.Energy = Mathf.InverseLerp(TopHeight, BottomHeight, transform.position.y);
         }
 
         private void OnDrawGizmosSelected()

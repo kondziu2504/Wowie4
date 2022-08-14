@@ -27,7 +27,7 @@ namespace Wowie4
 
         private void Shoot(Action.Type actionType)
         {
-            if (actionType != Action.Type.Shoot)
+            if (runtimeGameData.Energy == 0 || actionType != Action.Type.Shoot)
                 return;
 
             var matchingBullet = runtimeGameData.Bullets
