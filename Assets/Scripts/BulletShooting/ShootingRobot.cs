@@ -36,7 +36,7 @@ namespace Wowie4
         private void OnGoodCodeEaten()
         {
             currentHealth = Mathf.Min(currentHealth + 1, maxHealth);
-            diodes[currentHealth - 1].TurnOn();
+            diodes[diodes.Length - currentHealth].TurnOn();
             onGoodCodeEaten.RaiseEvent();
         }
 
