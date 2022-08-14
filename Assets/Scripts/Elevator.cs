@@ -87,6 +87,8 @@ namespace Wowie4
         private void Ascend()
         {
             var change = Vector2.up * ascendingSpeed * Time.deltaTime;
+            if (runtimeGameData.ShieldActive)
+                change *= 1.5f;
             rigidbody.MovePosition(new Vector3(rigidbody.position.x, Mathf.Clamp(rigidbody.position.y + change.y, BottomHeight, TopHeight)));
         }
     }

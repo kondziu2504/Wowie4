@@ -17,6 +17,7 @@ namespace Wowie4
         [SerializeField] Mouth mouth;
         [SerializeField] VoidEvent onGoodCodeEaten;
         [SerializeField] VoidEvent badCodePassed;
+        [SerializeField] RuntimeGameData runtimeGameData;
 
         private void Awake()
         {
@@ -60,7 +61,7 @@ namespace Wowie4
 
         private void DealDamage()
         {
-            if (currentHealth > 0)
+            if (currentHealth > 0 && !runtimeGameData.ShieldActive)
             {
                 diodes[diodes.Length - currentHealth].TurnOff();
                 currentHealth--;

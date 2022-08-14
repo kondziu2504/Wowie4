@@ -35,7 +35,7 @@ namespace Wowie4
         private void OnTriggerEnter2D(Collider2D collision)
         {
             var bullet = collision.GetComponent<Bullet>();
-            if (bullet != null)
+            if (bullet != null && bullet.BulletType == Bullet.Type.Bad)
                 bullet.Destroy();
         }
     }

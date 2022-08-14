@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 8418409889351192336}
   - component: {fileID: 6616244587703232505}
   - component: {fileID: 2131567017914026553}
+  - component: {fileID: 967985674969216633}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -278,7 +279,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2748147139839365012}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -305,6 +306,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionChosenEvent: {fileID: 11400000, guid: d1f40ef62faae384ead88cd690784470, type: 2}
   runtimeGameData: {fileID: 11400000, guid: 7291b4fda1adbe248887587dc2d16e92, type: 2}
+--- !u!61 &967985674969216633
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2748147139839365012}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &4328158714913136408
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +410,7 @@ MonoBehaviour:
   mouth: {fileID: 975282219171468206}
   onGoodCodeEaten: {fileID: 11400000, guid: 9ddfba13edd5ef24aa494c35eb55cd96, type: 2}
   badCodePassed: {fileID: 11400000, guid: c9026820bda9a91459deb21a9247d214, type: 2}
+  runtimeGameData: {fileID: 11400000, guid: 7291b4fda1adbe248887587dc2d16e92, type: 2}
 --- !u!114 &4328158714913134823
 MonoBehaviour:
   m_ObjectHideFlags: 0

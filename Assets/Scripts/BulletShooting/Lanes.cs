@@ -29,7 +29,9 @@ namespace Wowie4
 
         private void Start()
         {
-            OnLaneChanged(Action.Type.Left);
+            robot.transform.position = new Vector3(
+                           GetLaneX(CurrentLane),
+                           robot.transform.position.y);
         }
 
         private void OnDestroy()
