@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Utility.Events;
+using DG.Tweening;
 
 namespace Wowie4
 {
@@ -18,6 +19,13 @@ namespace Wowie4
         [SerializeField] VoidEvent onGoodCodeEaten;
         [SerializeField] VoidEvent badCodePassed;
         [SerializeField] RuntimeGameData runtimeGameData;
+        [SerializeField] Transform head;
+
+        [SerializeField] float shakeStrength = 0.5f;
+        [SerializeField] ShootingRobotParticles particles;
+        [SerializeField] Transform healHalo;
+
+        private Vector3 originalhaloScale;
 
         private void Awake()
         {
@@ -26,19 +34,28 @@ namespace Wowie4
             Assert.IsNotNull(mouth);
             Assert.IsNotNull(onGoodCodeEaten);
             Assert.IsNotNull(badCodePassed);
+
+            originalhaloScale = healHalo.localScale;
         }
 
         private void Start()
         {
             mouth.OnGoodCodeEaten += OnGoodCodeEaten;
             badCodePassed.OnEventRaised += DealDamage;
+            healHalo.localScale = Vector3.zero;
         }
 
         private void OnGoodCodeEaten()
         {
+            int initialHealth = currentHealth;
             currentHealth = Mathf.Min(currentHealth + 1, maxHealth);
             diodes[currentHealth - 1].TurnOn();
             onGoodCodeEaten.RaiseEvent();
+
+            var seq = DOTween.Sequence();
+            seq.Append(healHalo.DOScale(originalhaloScale, 0.3f).SetEase(Ease.OutSine));
+            seq.Append(healHalo.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InSine));
+            seq.Play();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -49,11 +66,11 @@ namespace Wowie4
                 if(bullet.BulletType == Bullet.Type.Bad)
                 {
                     DealDamage();
-                    bullet.Destroy();
+                    bullet.Destroy_();
                 }
                 else if(bullet.BulletType == Bullet.Type.Neutral)
                 {
-                    bullet.Destroy();
+                    bullet.Destroy_(true);
                 }
              
             }
@@ -65,6 +82,10 @@ namespace Wowie4
             {
                 diodes[currentHealth - 1].TurnOff();
                 currentHealth--;
+
+                head.DOKill();
+                head.DOShakePosition(0.5f, shakeStrength);
+                particles.PlayDamage();
             }
         }
     }

@@ -9,7 +9,9 @@ namespace Wowie4
     public class Bullet : MonoBehaviour
     {
         [SerializeField] new Rigidbody2D rigidbody;
-        [SerializeField] SpriteRenderer spriteRenderer;
+        [SerializeField] ParticleSystem numbersParticles;
+        [SerializeField] ParticleSystem numbersExplosionPrefab;
+        [SerializeField] SpriteRenderer halo;
         [SerializeField] RuntimeGameData runtimeGameData;
 
         [SerializeField] VoidEvent neutralCodePassed;
@@ -27,7 +29,7 @@ namespace Wowie4
         private void Awake()
         {
             Assert.IsNotNull(rigidbody);
-            Assert.IsNotNull(spriteRenderer);
+            Assert.IsNotNull(numbersParticles);
             Assert.IsNotNull(runtimeGameData);
 
             Assert.IsTrue(GetComponentInChildren<Collider2D>() != null);
@@ -48,7 +50,15 @@ namespace Wowie4
             this.BulletType = actionType;
             rigidbody.velocity = velocity;
             this.Lane = lane;
-            spriteRenderer.color = GetColor();
+            var particlesColorOverLifetime = numbersParticles.colorOverLifetime;
+            var gradient = new Gradient();
+            gradient.colorKeys = new GradientColorKey[]
+            {
+                new GradientColorKey(GetColor(), 0f),
+                new GradientColorKey(new Color(0,0,0,0), 1f)
+            };
+            particlesColorOverLifetime.color = new ParticleSystem.MinMaxGradient(gradient);
+            halo.color = GetColor();
         }
 
         private Color GetColor()
@@ -62,10 +72,22 @@ namespace Wowie4
             };
         }
 
-        public void Destroy()
+        public void Destroy_(bool useExplosion = false)
         {
             if (destroyed)
                 return;
+
+            numbersParticles.transform.SetParent(null, true);
+            numbersParticles.Stop();
+
+            if (useExplosion)
+            {
+                var explosion = Instantiate(numbersExplosionPrefab, transform.position, Quaternion.identity);
+                var main = explosion.main;
+                main.startColor = new ParticleSystem.MinMaxGradient(GetColor());
+                var trails = explosion.trails;
+                trails.colorOverTrail = new ParticleSystem.MinMaxGradient(GetColor());
+            }
 
             runtimeGameData.Bullets.Remove(this);
             Destroy(gameObject);
@@ -82,7 +104,7 @@ namespace Wowie4
                 neutralCodePassed.RaiseEvent();
             else if (BulletType == Type.Bad)
                 badCodePassed.RaiseEvent();
-            Destroy();
+            Destroy_();
         }
     }
 }

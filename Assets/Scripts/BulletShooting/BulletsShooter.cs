@@ -19,6 +19,7 @@ namespace Wowie4
 
         [SerializeField] Lanes lanes;
 
+
         private void Awake()
         {
             Assert.IsNotNull(runtimeGameData);
@@ -31,7 +32,7 @@ namespace Wowie4
                 return;
 
             var matchingBullet = runtimeGameData.Bullets
-                .Where(x => x.Lane == lanes.CurrentLane)
+                .Where(x => x.Lane == lanes.CurrentLane && x.transform.position.y > transform.position.y)
                 .OrderBy(x => x.transform.position.y).FirstOrDefault();
             if(matchingBullet != null)
             {
@@ -39,7 +40,7 @@ namespace Wowie4
                 laser1.Shoot(eye1.position, matchingBullet.transform.position, laserColor);
                 laser2.Shoot(eye2.position, matchingBullet.transform.position, laserColor);
 
-                matchingBullet.Destroy();
+                matchingBullet.Destroy_(true);
             }
         }
 

@@ -36,7 +36,7 @@ namespace Wowie4
         {
             var bullet = collision.GetComponent<Bullet>();
             if (bullet != null && bullet.BulletType == Bullet.Type.Bad)
-                bullet.Destroy();
+                bullet.Destroy_(true);
         }
     }
 }

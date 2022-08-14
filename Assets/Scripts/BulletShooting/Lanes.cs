@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Utility.Events;
+using DG.Tweening;
 
 namespace Wowie4
 {
@@ -70,9 +71,10 @@ namespace Wowie4
 
             CurrentLane = Mathf.Clamp(CurrentLane, 0, MaxLanes - 1);
 
-            robot.transform.position = new Vector3(
-                GetLaneX(CurrentLane),
-                robot.transform.position.y);
+            /* robot.transform.position = new Vector3(
+                 GetLaneX(CurrentLane),
+                 robot.transform.position.y);*/
+            robot.transform.DOMoveX(GetLaneX(CurrentLane), 0.3f).SetEase(Ease.OutCubic);
         }
     }
 }

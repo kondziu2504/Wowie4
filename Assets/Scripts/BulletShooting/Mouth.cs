@@ -27,18 +27,18 @@ namespace Wowie4
             Assert.IsNotNull(upperPart);
             Assert.IsNotNull(lowerPart);
 
-            lowerOriginalY = lowerPart.transform.position.y;
-            upperOriginalY = upperPart.transform.position.y;
+            lowerOriginalY = lowerPart.transform.localPosition.y;
+            upperOriginalY = upperPart.transform.localPosition.y;
         }
 
         private void Update()
         {
-            lowerPart.transform.position = new Vector3(
-                lowerPart.transform.position.x,
+            lowerPart.transform.localPosition = new Vector3(
+                lowerPart.transform.localPosition.x,
                 lowerOriginalY - runtimeGameData.Energy * openOffset);
 
-            upperPart.transform.position = new Vector3(
-                upperPart.transform.position.x,
+            upperPart.transform.localPosition = new Vector3(
+                upperPart.transform.localPosition.x,
                 upperOriginalY + runtimeGameData.Energy * openOffset);
         }
 
@@ -51,7 +51,7 @@ namespace Wowie4
 
             if(bullet != null && bullet.BulletType == Bullet.Type.Good)
             {
-                bullet.Destroy();
+                bullet.Destroy_();
                 OnGoodCodeEaten?.Invoke();
             }
         }
