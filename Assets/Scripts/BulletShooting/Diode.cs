@@ -8,24 +8,24 @@ namespace Wowie4
     public class Diode : MonoBehaviour
     {
         [SerializeField] SpriteRenderer spriteRenderer;
-        [SerializeField] Color offColor;
+        [SerializeField] Sprite unlitSprite;
 
-        Color originalColor;
+        Sprite originalSprite;
 
         private void Awake()
         {
             Assert.IsNotNull(spriteRenderer);
-            originalColor = spriteRenderer.color;
+            originalSprite = spriteRenderer.sprite;
         }
 
         public void TurnOff()
         {
-            spriteRenderer.color = offColor;
+            spriteRenderer.sprite = unlitSprite;
         }
 
         public void TurnOn()
         {
-            spriteRenderer.color = originalColor;
+            spriteRenderer.sprite = originalSprite;
         }
     }
 }

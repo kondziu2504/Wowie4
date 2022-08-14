@@ -37,7 +37,7 @@ namespace Wowie4
         private void OnGoodCodeEaten()
         {
             currentHealth = Mathf.Min(currentHealth + 1, maxHealth);
-            diodes[diodes.Length - currentHealth].TurnOn();
+            diodes[currentHealth - 1].TurnOn();
             onGoodCodeEaten.RaiseEvent();
         }
 
@@ -63,7 +63,7 @@ namespace Wowie4
         {
             if (currentHealth > 0 && !runtimeGameData.ShieldActive)
             {
-                diodes[diodes.Length - currentHealth].TurnOff();
+                diodes[currentHealth - 1].TurnOff();
                 currentHealth--;
             }
         }
