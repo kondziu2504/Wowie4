@@ -16,6 +16,7 @@ namespace Wowie4
         [SerializeField] Diode[] diodes;
         [SerializeField] Mouth mouth;
         [SerializeField] VoidEvent onGoodCodeEaten;
+        [SerializeField] VoidEvent badCodePassed;
 
         private void Awake()
         {
@@ -23,11 +24,13 @@ namespace Wowie4
             Assert.IsTrue(diodes.Length == currentHealth && diodes.All(diode => diode != null));
             Assert.IsNotNull(mouth);
             Assert.IsNotNull(onGoodCodeEaten);
+            Assert.IsNotNull(badCodePassed);
         }
 
         private void Start()
         {
             mouth.OnGoodCodeEaten += OnGoodCodeEaten;
+            badCodePassed.OnEventRaised += DealDamage;
         }
 
         private void OnGoodCodeEaten()
@@ -44,12 +47,7 @@ namespace Wowie4
             {
                 if(bullet.BulletType == Bullet.Type.Bad)
                 {
-                    if (currentHealth > 0)
-                    {
-                        diodes[diodes.Length - currentHealth].TurnOff();
-                        currentHealth--;
-                    }
-
+                    DealDamage();
                     bullet.Destroy();
                 }
                 else if(bullet.BulletType == Bullet.Type.Neutral)
@@ -57,6 +55,15 @@ namespace Wowie4
                     bullet.Destroy();
                 }
              
+            }
+        }
+
+        private void DealDamage()
+        {
+            if (currentHealth > 0)
+            {
+                diodes[diodes.Length - currentHealth].TurnOff();
+                currentHealth--;
             }
         }
     }

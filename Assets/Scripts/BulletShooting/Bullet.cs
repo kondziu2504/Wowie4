@@ -13,12 +13,15 @@ namespace Wowie4
         [SerializeField] RuntimeGameData runtimeGameData;
 
         [SerializeField] VoidEvent neutralCodePassed;
+        [SerializeField] VoidEvent badCodePassed;
 
         public enum Type { Good, Bad, Neutral }
 
         public Type BulletType { get; private set; }
 
         #region Unity messages 
+
+        private bool destroyed = false;
 
         private void Awake()
         {
@@ -59,14 +62,24 @@ namespace Wowie4
 
         public void Destroy()
         {
+            if (destroyed)
+                return;
+
             runtimeGameData.Bullets.Remove(this);
             Destroy(gameObject);
+
+            destroyed = true;
         }
 
         private void DestroyByPassing()
         {
-            if(BulletType == Type.Neutral)
+            if (destroyed)
+                return;
+
+            if (BulletType == Type.Neutral)
                 neutralCodePassed.RaiseEvent();
+            else if (BulletType == Type.Bad)
+                badCodePassed.RaiseEvent();
             Destroy();
         }
     }

@@ -259,7 +259,8 @@ MonoBehaviour:
   - {fileID: 3732841266334155873}
   - {fileID: 7576247196793504967}
   mouth: {fileID: 975282219171468206}
-  onGoodCodeEaten: {fileID: 0}
+  onGoodCodeEaten: {fileID: 11400000, guid: 9ddfba13edd5ef24aa494c35eb55cd96, type: 2}
+  badCodePassed: {fileID: 11400000, guid: c9026820bda9a91459deb21a9247d214, type: 2}
 --- !u!114 &4328158714913134823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,8 +506,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6451431360047794554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.03, y: -0.43, z: 0}
+  m_LocalScale: {x: 0.36225003, y: 0.675, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8345626705603988218}
@@ -541,7 +542,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.329976, y: 2.0331228}
+  m_Size: {x: 6.192435, y: 2.0331228}
   m_EdgeRadius: 0
 --- !u!1 &6500700529619822120
 GameObject:
