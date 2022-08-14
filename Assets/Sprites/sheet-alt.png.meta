@@ -259,7 +259,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,6 +267,69 @@ TextureImporter:
       bones: []
       spriteID: 69fdd2bcf448e014a9de6575bb304108
       internalID: 1880498400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sheet-alt_9
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca9c4adbe462fd4daf90346d02989a4
+      internalID: 1461032692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sheet-alt_10
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec97b97328026704da520dfc6d224566
+      internalID: -1241275293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sheet-alt_8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb26d498fd0dec4aa1fc725c0bfc4ce
+      internalID: -1230726821
       vertices: []
       indices: 
       edges: []
@@ -282,6 +345,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      sheet-alt_9: 1461032692
       sheet-alt_5: 1871296451
       sheet-alt_2: -807243072
       sheet-alt_4: -780573942
@@ -289,6 +353,8 @@ TextureImporter:
       sheet-alt_6: -1836903207
       sheet-alt_0: -1687025678
       sheet-alt_1: 50136474
+      sheet-alt_10: -1241275293
+      sheet-alt_8: -1230726821
       sheet-alt_7: 1880498400
   spritePackingTag: 
   pSDRemoveMatte: 0
