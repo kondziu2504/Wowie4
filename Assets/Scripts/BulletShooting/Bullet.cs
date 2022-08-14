@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Utility.Events;
 
 namespace Wowie4
 {
@@ -11,7 +12,11 @@ namespace Wowie4
         [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] RuntimeGameData runtimeGameData;
 
-        public Action.Type ActionType { get; private set; }
+        [SerializeField] VoidEvent neutralCodePassed;
+
+        public enum Type { Good, Bad, Neutral }
+
+        public Type BulletType { get; private set; }
 
         #region Unity messages 
 
@@ -22,28 +27,47 @@ namespace Wowie4
             Assert.IsNotNull(runtimeGameData);
 
             Assert.IsTrue(GetComponentInChildren<Collider2D>() != null);
+            Assert.IsNotNull(neutralCodePassed);
 
             runtimeGameData.Bullets.Add(this);
         }
 
         public void OnBecameInvisible()
         {
-            Destroy();
+            DestroyByPassing();
         }
 
         #endregion
 
-        public void Init(Action.Type actionType, Vector2 velocity)
+        public void Init(Type actionType, Vector2 velocity)
         {
-            this.ActionType = actionType;
+            this.BulletType = actionType;
             rigidbody.velocity = velocity;
-            spriteRenderer.color = Action.GetActionColor(actionType);
+            spriteRenderer.color = GetColor();
+        }
+
+        private Color GetColor()
+        {
+            return BulletType switch
+            {
+                Type.Good => Color.green,
+                Type.Bad => Color.red,
+                Type.Neutral => Color.yellow,
+                _ => throw new System.ArgumentOutOfRangeException()
+            };
         }
 
         public void Destroy()
         {
             runtimeGameData.Bullets.Remove(this);
             Destroy(gameObject);
+        }
+
+        private void DestroyByPassing()
+        {
+            if(BulletType == Type.Neutral)
+                neutralCodePassed.RaiseEvent();
+            Destroy();
         }
     }
 }

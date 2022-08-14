@@ -56,7 +56,7 @@ namespace Wowie4
         private void SpawnBullet()
         {
             var bullet = Instantiate(bulletPrefab, GetRandomSpawnPos(), Quaternion.identity);
-            bullet.Init(GetRandomActionType(), Vector2.down * bulletSpeed);
+            bullet.Init(GetRandomBulletType(), Vector2.down * bulletSpeed);
         }
 
         private Vector3 GetRandomSpawnPos()
@@ -65,9 +65,9 @@ namespace Wowie4
             return transform.position + Vector3.right * xOffset;
         }
 
-        private Action.Type GetRandomActionType()
+        private Bullet.Type GetRandomBulletType()
         {
-            return Enum.GetValues(typeof(Action.Type)).Cast<Action.Type>().ToList().RandomElement();
+            return Enum.GetValues(typeof(Bullet.Type)).Cast<Bullet.Type>().ToList().RandomElement();
         }
     }
 

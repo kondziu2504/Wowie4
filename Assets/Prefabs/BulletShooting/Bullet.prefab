@@ -139,3 +139,4 @@ MonoBehaviour:
   rigidbody: {fileID: 6238380020484248034}
   spriteRenderer: {fileID: 6238380020484248047}
   runtimeGameData: {fileID: 11400000, guid: 7291b4fda1adbe248887587dc2d16e92, type: 2}
+  neutralCodePassed: {fileID: 11400000, guid: 7433b28b8cc16254da2d4adb75b00dc7, type: 2}
