@@ -47,12 +47,22 @@ namespace Wowie4
 
 		IEnumerator SpawningCoro()
 		{
+			float startTime = Time.time;
+
 			while (true)
 			{
-				yield return new WaitForSeconds(spawnPeriod);
 				SpawnBullet();
+				yield return new WaitForSeconds(CalculateSpawnPeriod(startTime));
 			}
 		}
+
+		private float CalculateSpawnPeriod(float startTime)
+        {
+			float difficultyAcceleration = 0.03f;
+			float timeFromStart = Time.time - startTime;
+
+			return 1f / ((timeFromStart * difficultyAcceleration / 10f) + 1f / spawnPeriod);
+        }
 
 		private void SpawnBullet()
 		{
@@ -69,7 +79,7 @@ namespace Wowie4
 
 		private Bullet.Type GetRandomBulletType()
 		{
-			return Enum.GetValues(typeof(Bullet.Type)).Cast<Bullet.Type>().ToList().RandomElement();
+			return UnityEngine.Random.value > 0.8f ? Bullet.Type.Good : Bullet.Type.Bad;
 		}
 	}
 
