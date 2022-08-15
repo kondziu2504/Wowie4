@@ -13,8 +13,8 @@ namespace Wowie4
 		[SerializeField] RuntimeGameData runtimeGameData;
 		[SerializeField] BlinkObject blinkObject;
 		[SerializeField] BlinkObject lowBatteryBlink;
-		[SerializeField] AudioSource dischargedAudio;
 		[SerializeField] VoidEvent playerDied;
+		[SerializeField] AudioSource dischargedAudio, descendAudio;
 		private float originalHeight;
 		private bool discharged, lastFrameDischarged;
 		private float BottomHeight => Application.isPlaying ? originalHeight : transform.localPosition.y;
@@ -110,6 +110,10 @@ namespace Wowie4
 
 		private void Descend()
 		{
+			if (descendAudio.isPlaying == false)
+			{
+				descendAudio.Play();
+			}
 			var change = Vector2.down * descendingSpeed * Time.deltaTime;
 			if (controls.Player.ElevatorDown.ReadValue<float>() != 0)
 				change *= descendBoostMultiplier;
@@ -119,6 +123,10 @@ namespace Wowie4
 
 		private void Ascend()
 		{
+			if (descendAudio.isPlaying)
+			{
+				descendAudio.Pause();
+			}
 			var change = Vector2.up * ascendingSpeed * Time.deltaTime;
 			if (runtimeGameData.ShieldActive)
 				change *= 1.5f;
