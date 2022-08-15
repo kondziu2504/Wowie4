@@ -5537,7 +5537,7 @@ PrefabInstance:
       objectReference: {fileID: 1536567813}
     - target: {fileID: 8518809838429378974, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
       propertyPath: bulletSpeed
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8518809838429378974, guid: c57aef3427d7d20449dd4c1991fe9f00, type: 3}
       propertyPath: spawnPeriod

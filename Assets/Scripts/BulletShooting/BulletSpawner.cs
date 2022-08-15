@@ -68,7 +68,8 @@ namespace Wowie4
 		{
 			var lane = UnityEngine.Random.Range(0, lanes.MaxLanes);
 			var bullet = Instantiate(bulletPrefab, GetRandomSpawnPos(lane), Quaternion.identity);
-			bullet.Init(GetRandomBulletType(), Vector2.down * bulletSpeed, lane);
+			var type = GetRandomBulletType();
+			bullet.Init(type, Vector2.down * bulletSpeed * (type == Bullet.Type.Bad ? 0.5f : 1f), lane);
 		}
 
 		private Vector3 GetRandomSpawnPos(int lane)
