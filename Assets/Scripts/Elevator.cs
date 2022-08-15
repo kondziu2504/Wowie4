@@ -11,6 +11,7 @@ namespace Wowie4
 		[SerializeField] float descendBoostMultiplier = 2f;
 		[SerializeField] RuntimeGameData runtimeGameData;
 		[SerializeField] BlinkObject blinkObject;
+		[SerializeField] BlinkObject lowBatteryBlink;
 
 		private float originalHeight;
 
@@ -49,6 +50,14 @@ namespace Wowie4
 		private void Update()
 		{
 			runtimeGameData.Energy = Mathf.InverseLerp(TopHeight, BottomHeight, transform.position.y);
+			if (runtimeGameData.Energy < 0.05f)
+			{
+				lowBatteryBlink.StartBlinking();
+			}
+			else
+			{
+				lowBatteryBlink.StopBlinking();
+			}
 		}
 
 		private void OnDrawGizmosSelected()

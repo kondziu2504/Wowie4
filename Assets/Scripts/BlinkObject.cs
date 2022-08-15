@@ -30,7 +30,10 @@ namespace Wowie4
 		public void StopBlinking()
 		{
 			isBlinking = false;
-			StopCoroutine(blinkCoroutine);
+			if (blinkCoroutine is not null)
+			{
+				StopCoroutine(blinkCoroutine);
+			}
 			blinkObject.SetActive(false);
 		}
 	}
