@@ -29,6 +29,7 @@ namespace Wowie4
 		[SerializeField] SpriteRenderer[] ears;
 		[SerializeField] ParticleSystem[] earParticles;
 		[SerializeField] AudioSource damageAudio;
+		[SerializeField] VoidEvent playerDied;
 		private Vector3 originalhaloScale;
 
 		private void Awake()
@@ -112,6 +113,16 @@ namespace Wowie4
 				head.DOKill();
 				head.DOShakePosition(0.5f, shakeStrength);
 				particles.PlayDamage();
+				if(currentHealth == 0)
+                {
+					var rigidbody = GetComponent<Rigidbody2D>();
+					rigidbody.bodyType = RigidbodyType2D.Dynamic;
+					rigidbody.AddForce(new Vector2(1, 4), ForceMode2D.Impulse);
+					rigidbody.gravityScale = 3f;
+					playerDied.RaiseEvent();
+					enabled = false;
+					bulletsShooter.active = false;
+                }
 			}
 		}
 	}

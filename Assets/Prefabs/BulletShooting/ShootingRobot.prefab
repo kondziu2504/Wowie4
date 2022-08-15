@@ -461,6 +461,8 @@ MonoBehaviour:
   earParticles:
   - {fileID: 2400699792866306943}
   - {fileID: 8990357206885181308}
+  damageAudio: {fileID: 0}
+  playerDied: {fileID: 11400000, guid: 39b079e51ecd5514f83539f5cf88eda4, type: 2}
 --- !u!114 &4328158714913134823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,11 +477,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runtimeGameData: {fileID: 11400000, guid: 7291b4fda1adbe248887587dc2d16e92, type: 2}
   actionChosenEvent: {fileID: 11400000, guid: d1f40ef62faae384ead88cd690784470, type: 2}
+  shootAduxio: {fileID: 0}
   eye1: {fileID: 7862930726598173719}
   eye2: {fileID: 8456470390179203678}
   laser1: {fileID: 3716776476394712251}
   laser2: {fileID: 4590587880014886797}
   lanes: {fileID: 0}
+  active: 1
 --- !u!1 &4347271609895835759
 GameObject:
   m_ObjectHideFlags: 0

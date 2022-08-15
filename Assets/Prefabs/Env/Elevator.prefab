@@ -201,6 +201,9 @@ MonoBehaviour:
   descendBoostMultiplier: 2.78
   runtimeGameData: {fileID: 11400000, guid: 7291b4fda1adbe248887587dc2d16e92, type: 2}
   blinkObject: {fileID: 0}
+  lowBatteryBlink: {fileID: 0}
+  dischargedAudio: {fileID: 0}
+  playerDied: {fileID: 11400000, guid: 39b079e51ecd5514f83539f5cf88eda4, type: 2}
 --- !u!50 &7648478746439517274
 Rigidbody2D:
   serializedVersion: 4

@@ -19,6 +19,7 @@ namespace Wowie4
 
 		[SerializeField] Lanes lanes;
 
+		public bool active = true;
 
 		private void Awake()
 		{
@@ -28,7 +29,7 @@ namespace Wowie4
 
 		private void Shoot(Action.Type actionType)
 		{
-			if (runtimeGameData.Energy == 0 || actionType != Action.Type.Shoot)
+			if (!active || runtimeGameData.Energy == 0 || actionType != Action.Type.Shoot)
 				return;
 
 			var matchingBullet = runtimeGameData.Bullets

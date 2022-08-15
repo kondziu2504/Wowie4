@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utility.Events;
 
 namespace Wowie4
 {
@@ -13,9 +14,10 @@ namespace Wowie4
 		[SerializeField] BlinkObject blinkObject;
 		[SerializeField] BlinkObject lowBatteryBlink;
 		[SerializeField] AudioSource dischargedAudio;
+		[SerializeField] VoidEvent playerDied;
 		private float originalHeight;
 		private bool discharged, lastFrameDischarged;
-		private float BottomHeight => Application.isPlaying ? originalHeight : transform.position.y;
+		private float BottomHeight => Application.isPlaying ? originalHeight : transform.localPosition.y;
 		private float TopHeight => BottomHeight + maxHeight;
 
 		private bool descending = false;
@@ -26,11 +28,18 @@ namespace Wowie4
 
 		private void Awake()
 		{
-			originalHeight = transform.position.y;
+			originalHeight = transform.localPosition.y;
 			rigidbody = GetComponent<Rigidbody2D>();
+            playerDied.OnEventRaised += PlayerDied_OnEventRaised;
 		}
 
-		private void OnEnable()
+        private void PlayerDied_OnEventRaised()
+        {
+			enabled = false;
+			gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
 		{
 			controls = new Controls();
 			controls.Enable();
@@ -49,7 +58,7 @@ namespace Wowie4
 
 		private void Update()
 		{
-			runtimeGameData.Energy = Mathf.InverseLerp(TopHeight, BottomHeight, transform.position.y);
+			runtimeGameData.Energy = Mathf.InverseLerp(TopHeight, BottomHeight, transform.localPosition.y);
 			if (runtimeGameData.Energy < 0.02f)
 			{
 				discharged = true;
@@ -78,7 +87,7 @@ namespace Wowie4
 
 		private void OnTriggerStay2D(Collider2D collision)
 		{
-			if (collision.transform.position.y > transform.position.y)
+			if (collision.transform.localPosition.y > transform.localPosition.y)
 			{
 				Descend();
 				descending = true;
