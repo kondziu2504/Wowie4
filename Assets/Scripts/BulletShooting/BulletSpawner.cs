@@ -79,7 +79,7 @@ namespace Wowie4
 
 		private Bullet.Type GetRandomBulletType()
 		{
-			return UnityEngine.Random.value > 0.7f ? Bullet.Type.Good : Bullet.Type.Bad;
+			return UnityEngine.Random.value > 0.5f ? Bullet.Type.Good : Bullet.Type.Bad;
 		}
 	}
 
