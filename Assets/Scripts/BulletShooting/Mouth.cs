@@ -44,9 +44,6 @@ namespace Wowie4
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!MouthIsOpen)
-                return;
-
             var bullet = collision.GetComponent<Bullet>();
 
             if(bullet != null && bullet.BulletType == Bullet.Type.Good)
