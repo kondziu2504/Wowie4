@@ -6,9 +6,10 @@ namespace Onion2D.Movement
 	{
 		[SerializeField] Rigidbody2D body;
 		[SerializeField] float jumpForce;
-		[SerializeField] AudioClip jump;
+		[SerializeField] AudioSource jump;
 		public void PerformeJump()
 		{
+			jump.Play();
 			body.AddForce(Vector2.up * jumpForce * Mathf.Sign(body.gravityScale), ForceMode2D.Impulse);
 		}
 
