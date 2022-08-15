@@ -38,7 +38,7 @@ namespace Wowie4
 				return;
 
 			var matchingBullet = runtimeGameData.Bullets
-				.Where(x => x.Lane == lanes.CurrentLane && x.transform.position.y > transform.position.y)
+				.Where(x => x != null && x.Lane == lanes.CurrentLane && x.transform.position.y > transform.position.y)
 				.OrderBy(x => x.transform.position.y).FirstOrDefault();
 			if (matchingBullet != null)
 			{

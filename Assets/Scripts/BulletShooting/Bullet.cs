@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -77,7 +78,14 @@ namespace Wowie4
             if (destroyed)
                 return;
 
-            numbersParticles.transform.SetParent(null, true);
+            runtimeGameData.Bullets.Remove(this);
+            Destroy(gameObject);
+            try
+            {
+                numbersParticles.transform.SetParent(null, true);
+            }
+            catch (Exception ex) { }
+ 
             numbersParticles.Stop();
 
             if (useExplosion)
@@ -88,9 +96,6 @@ namespace Wowie4
                 var trails = explosion.trails;
                 trails.colorOverTrail = new ParticleSystem.MinMaxGradient(GetColor());
             }
-
-            runtimeGameData.Bullets.Remove(this);
-            Destroy(gameObject);
 
             destroyed = true;
         }
