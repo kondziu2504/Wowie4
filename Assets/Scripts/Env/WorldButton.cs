@@ -27,17 +27,16 @@ namespace Wowie4
 			originalActionIconColor = actionBackground.color;
 		}
 
-        private void Update()
-        {
+		private void Update()
+		{
 			bool hasEnergy = runtimeGameData.Energy > 0;
 			halo.SetActive(hasEnergy);
 			actionBackground.color = hasEnergy ? originalActionIconColor : Color.gray;
-        }
+		}
 
-        private void OnTriggerEnter2D(Collider2D collision)
+		private void OnTriggerEnter2D(Collider2D collision)
 		{
 			ButtonPressed?.Invoke(actionType);
-
 			spriteRenderer.sprite = pressedSprite;
 		}
 		private void OnTriggerExit2D(Collider2D collision)
