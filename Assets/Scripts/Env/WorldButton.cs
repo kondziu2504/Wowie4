@@ -36,12 +36,18 @@ namespace Wowie4
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			ButtonPressed?.Invoke(actionType);
-			spriteRenderer.sprite = pressedSprite;
+			if(collision.GetComponent<PlayerController>() != null)
+            {
+				ButtonPressed?.Invoke(actionType);
+				spriteRenderer.sprite = pressedSprite;
+			}
 		}
 		private void OnTriggerExit2D(Collider2D collision)
 		{
-			spriteRenderer.sprite = defaultSprite;
+			if (collision.GetComponent<PlayerController>() != null)
+			{
+				spriteRenderer.sprite = defaultSprite;
+			}
 		}
 	}
 }
