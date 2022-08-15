@@ -12,9 +12,9 @@ namespace Wowie4
 		[SerializeField] RuntimeGameData runtimeGameData;
 		[SerializeField] BlinkObject blinkObject;
 		[SerializeField] BlinkObject lowBatteryBlink;
-
+		[SerializeField] AudioSource dischargedAudio;
 		private float originalHeight;
-
+		private bool discharged, lastFrameDischarged;
 		private float BottomHeight => Application.isPlaying ? originalHeight : transform.position.y;
 		private float TopHeight => BottomHeight + maxHeight;
 
@@ -50,14 +50,21 @@ namespace Wowie4
 		private void Update()
 		{
 			runtimeGameData.Energy = Mathf.InverseLerp(TopHeight, BottomHeight, transform.position.y);
-			if (runtimeGameData.Energy < 0.05f)
+			if (runtimeGameData.Energy < 0.02f)
 			{
+				discharged = true;
 				lowBatteryBlink.StartBlinking();
 			}
 			else
 			{
+				discharged = false;
 				lowBatteryBlink.StopBlinking();
 			}
+			if (lastFrameDischarged == false && discharged == true)
+			{
+				dischargedAudio.Play();
+			}
+			lastFrameDischarged = discharged;
 		}
 
 		private void OnDrawGizmosSelected()
@@ -75,7 +82,14 @@ namespace Wowie4
 			{
 				Descend();
 				descending = true;
-				blinkObject.StartBlinking();
+				if (runtimeGameData.Energy == 1f)
+				{
+					blinkObject.StopBlinking();
+				}
+				else
+				{
+					blinkObject.StartBlinking();
+				}
 			}
 		}
 
