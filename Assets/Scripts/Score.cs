@@ -12,6 +12,7 @@ namespace Wowie4
 		[Header("Events")]
 		[SerializeField] VoidEvent goodCodeEaten;
 		[SerializeField] VoidEvent neutralCodePassed;
+		[SerializeField] VoidEvent gameWon;
 
 		private void Awake()
 		{
@@ -31,6 +32,8 @@ namespace Wowie4
 		{
 			score++;
 			scoreText.text = $"Functions Learned: {score}/{maxScore}";
+			if (score == maxScore)
+				gameWon.RaiseEvent();
 		}
 
 	}

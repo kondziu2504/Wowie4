@@ -5597,6 +5597,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6156143081595509218, guid: a86f0fabd7a0c7642a100142055b4725, type: 3}
+      propertyPath: gameWon
+      value: 
+      objectReference: {fileID: 11400000, guid: da7430f290448be43b9e0c80372a7ea8, type: 2}
+    - target: {fileID: 6156143081595509218, guid: a86f0fabd7a0c7642a100142055b4725, type: 3}
       propertyPath: maxScore
       value: 8
       objectReference: {fileID: 0}
