@@ -25,6 +25,10 @@ namespace Wowie4
         [SerializeField] ShootingRobotParticles particles;
         [SerializeField] Transform healHalo;
 
+        [SerializeField] GameObject[] eyes;
+        [SerializeField] SpriteRenderer[] ears;
+        [SerializeField] ParticleSystem[] earParticles;
+
         private Vector3 originalhaloScale;
 
         private void Awake()
@@ -43,6 +47,28 @@ namespace Wowie4
             mouth.OnGoodCodeEaten += OnGoodCodeEaten;
             badCodePassed.OnEventRaised += DealDamage;
             healHalo.localScale = Vector3.zero;
+        }
+
+        private void Update()
+        {
+            foreach (var ear in ears)
+                ear.color = runtimeGameData.Energy > 0 ? Color.white : Color.gray;
+
+            foreach (var eye in eyes)
+                eye.SetActive(runtimeGameData.Energy > 0);
+
+            foreach (var earParticles in earParticles)
+                if (runtimeGameData.Energy > 0)
+                {
+                    if (earParticles.isStopped)
+                    {
+                        earParticles.Play();
+                    }
+                }
+                else if (!earParticles.isStopped)
+                {
+                    earParticles.Stop();
+                }
         }
 
         private void OnGoodCodeEaten()

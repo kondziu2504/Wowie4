@@ -13,14 +13,28 @@ namespace Wowie4
 		[SerializeField] Sprite pressedSprite;
 		[SerializeField] SpriteRenderer spriteRenderer;
 
+		[SerializeField] SpriteRenderer actionBackground;
+		[SerializeField] GameObject halo;
+		[SerializeField] RuntimeGameData runtimeGameData;
+
+		Color originalActionIconColor;
+
 		Sprite defaultSprite;
 		// Start is called before the first frame update
 		void Start()
 		{
 			defaultSprite = spriteRenderer.sprite;
+			originalActionIconColor = actionBackground.color;
 		}
 
-		private void OnTriggerEnter2D(Collider2D collision)
+        private void Update()
+        {
+			bool hasEnergy = runtimeGameData.Energy > 0;
+			halo.SetActive(hasEnergy);
+			actionBackground.color = hasEnergy ? originalActionIconColor : Color.gray;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
 		{
 			ButtonPressed?.Invoke(actionType);
 
