@@ -21,7 +21,13 @@ namespace Wowie4
 			neutralCodePassed.OnEventRaised += AddScore;
 		}
 
-		private void AddScore()
+        private void OnDestroy()
+        {
+			goodCodeEaten.OnEventRaised -= AddScore;
+			neutralCodePassed.OnEventRaised -= AddScore;
+		}
+
+        private void AddScore()
 		{
 			score++;
 			scoreText.text = $"Functions Learned: {score}/{maxScore}";

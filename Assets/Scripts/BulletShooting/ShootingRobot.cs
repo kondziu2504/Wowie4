@@ -50,7 +50,12 @@ namespace Wowie4
 			healHalo.localScale = Vector3.zero;
 		}
 
-		private void Update()
+        private void OnDestroy()
+        {
+			badCodePassed.OnEventRaised -= DealDamage;
+		}
+
+        private void Update()
 		{
 			foreach (var ear in ears)
 				ear.color = runtimeGameData.Energy > 0 ? Color.white : Color.gray;

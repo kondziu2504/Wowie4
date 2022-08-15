@@ -17,6 +17,11 @@ namespace Wowie4
             gameObject.SetActive(false);
         }
 
+        private void OnDestroy()
+        {
+            actionChosenEvent.OnEventRaised -= ShieldToggle;
+        }
+
         private void Update()
         {
             if (runtimeGameData.Energy == 0)

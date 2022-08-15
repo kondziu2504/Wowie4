@@ -18,6 +18,11 @@ namespace Wowie4
             playerDied.OnEventRaised += PlayerDied_OnEventRaised;
         }
 
+        private void OnDestroy()
+        {
+			playerDied.OnEventRaised -= PlayerDied_OnEventRaised;
+		}
+
         private void PlayerDied_OnEventRaised()
         {
 			gameObject.SetActive(false);

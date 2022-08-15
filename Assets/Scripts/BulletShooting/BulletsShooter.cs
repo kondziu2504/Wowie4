@@ -27,7 +27,12 @@ namespace Wowie4
 			actionChosenEvent.OnEventRaised += Shoot;
 		}
 
-		private void Shoot(Action.Type actionType)
+        private void OnDestroy()
+        {
+			actionChosenEvent.OnEventRaised -= Shoot;
+		}
+
+        private void Shoot(Action.Type actionType)
 		{
 			if (!active || runtimeGameData.Energy == 0 || actionType != Action.Type.Shoot)
 				return;
