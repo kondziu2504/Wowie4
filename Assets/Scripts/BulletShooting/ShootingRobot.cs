@@ -80,7 +80,7 @@ namespace Wowie4
 		private void OnGoodCodeEaten()
 		{
 			int initialHealth = currentHealth;
-			currentHealth = Mathf.Min(currentHealth + 1, maxHealth);
+			//currentHealth = Mathf.Min(currentHealth + 1, maxHealth);
 			diodes[currentHealth - 1].TurnOn();
 			onGoodCodeEaten.RaiseEvent();
 
@@ -100,9 +100,10 @@ namespace Wowie4
 					DealDamage();
 					bullet.Destroy_();
 				}
-				else if (bullet.BulletType == Bullet.Type.Neutral)
+				else if (bullet.BulletType == Bullet.Type.Good)
 				{
 					bullet.Destroy_(true);
+					OnGoodCodeEaten();
 				}
 
 			}

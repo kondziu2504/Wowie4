@@ -49,7 +49,7 @@ namespace Wowie4
             if(bullet != null && bullet.BulletType == Bullet.Type.Good)
             {
                 bullet.Destroy_();
-                OnGoodCodeEaten?.Invoke();
+//                OnGoodCodeEaten?.Invoke();
             }
         }
     }
