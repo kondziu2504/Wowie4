@@ -70,10 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You won!
-
-
-    Play again'
+  m_text: "You won!\n\nBut you can \nkeep playing!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3532f9230cc39144481a55c76bf8b85a, type: 2}
   m_sharedMaterial: {fileID: 641020341586426576, guid: 3532f9230cc39144481a55c76bf8b85a, type: 2}
@@ -380,6 +377,7 @@ MonoBehaviour:
   scoreText: {fileID: 6156143081595509220}
   goodCodeEaten: {fileID: 11400000, guid: 9ddfba13edd5ef24aa494c35eb55cd96, type: 2}
   neutralCodePassed: {fileID: 11400000, guid: 7433b28b8cc16254da2d4adb75b00dc7, type: 2}
+  gameWon: {fileID: 0}
 --- !u!1 &6156143082008265113
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,12 +25,13 @@ namespace Wowie4
 
         private void PlayerDied_OnEventRaised()
         {
-            button.enabled = true;
-            canvasGroup.DOFade(1f, 2f).SetEase(Ease.InOutSine);
-            button.onClick.AddListener(() =>
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            });
+            var seq = DOTween.Sequence();
+
+            seq.Append(canvasGroup.DOFade(1f, 2f).SetEase(Ease.InOutSine));
+            seq.AppendInterval(3f);
+            seq.Append(canvasGroup.DOFade(0f, 2f).SetEase(Ease.InOutSine));
+
+            seq.Play();
         }
     }
 }
